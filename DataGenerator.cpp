@@ -51,7 +51,7 @@ void GenerateNearlySortedData(int a[], int n)
 		a[i] = i;
 	}
 	srand((unsigned int) time(NULL));
-	for (int i = 0; i < 10; i ++)
+	for (int i = 0; i < 10; i++)
 	{
 		int r1 = rand()%n;
 		int r2 = rand()%n;

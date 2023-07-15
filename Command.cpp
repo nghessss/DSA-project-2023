@@ -16,6 +16,25 @@ int GetDataType(char *Order)
     return -1;
 }
 
+// Hàm này dùng để chuẩn hóa với dữ liệu đã cho theo thứ tự của thầy thông.
+int ChangeDataType(int DataType)
+{
+    switch (DataType)
+    {
+    case 0:
+        return 0;
+    case 1:
+        return 3;
+    case 2:
+        return 1;
+    case 3:
+        return 2;
+    default:
+        return -1;
+    }
+
+}
+
 void SortArr(int *&a, int n, char *Algorithm, int &CountCompare, int &Time, int OutputType, bool &Success)
 {
     CountCompare = 0;
@@ -156,16 +175,23 @@ void Command_1(char *argv[])
     int size;
     int Time = 0;
     int CountCompare = 0;
+    bool Success = true;
 
     OutputType = GetOutputType(argv[4]);
     if (OutputType == -1)
         return;
 
+    //Read Array From file
     ReadFile(a, size, argv[3]);
+
+    //Sort Array
+    SortArr(a, size, argv[2], CountCompare, Time, OutputType, Success);
+    if (!Success)
+        return;
 
     // Result
     cout << "Input file : " << argv[3] << endl;
-    cout << "Input size : " << size<<endl;
+    cout << "Input size : " << size << endl;
     cout << "---------------------------------\n";
     PrintResult(Time, CountCompare, OutputType);
     WriteFile("output.txt", a, size);
@@ -194,7 +220,7 @@ void Command_2(char *argv[])
 
     // Creat Array from order
     int *a = new int[size];
-    GenerateData(a, size, dataType);
+    GenerateData(a, size, ChangeDataType(dataType));
 
     // Write down the generated input to the "input.txt" file.
     WriteFile("input.txt", a, size);
@@ -234,7 +260,7 @@ void Command_3(char *argv[])
 
     for (int i = 0; i < 4; i++)
     {
-        GenerateData(a, size, i);
+        GenerateData(a, size, ChangeDataType(i));
         SortArr(a, size, argv[2], CountCompare, Time, OutputType, Success);
         if (!Success)
             break;
@@ -244,6 +270,7 @@ void Command_3(char *argv[])
         PrintResult(Time, CountCompare, OutputType);
         cout << "\n";
 
+        // Get name of file
         string temp = "input_";
         temp += to_string(i + 1);
         temp += ".txt";
