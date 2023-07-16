@@ -24,6 +24,7 @@ void countingSort(int a[], int n)
 }
 void countingSortCompare(int a[], int n, int &comparison)
 {
+    comparison = 0;
     int maxNum = 0;
     for (int i = 0; ++comparison && i < n; i++)
         if (++comparison && maxNum < a[i])
@@ -44,7 +45,8 @@ void countingSortCompare(int a[], int n, int &comparison)
         }
     delete count;
 }
-void countingSortTime(int a[], int n, double &time){
+void countingSortTime(int a[], int n, double &time)
+{
     clock_t start, end;
     start = clock();
     countingSort(a, n);

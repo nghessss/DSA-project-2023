@@ -9,5 +9,5 @@ int partition(int a[], int first, int last);
 void quickSort(int a[], int low, int high);
 int partitionCompare(int a[], int first, int last, int &comparison);
 void quickSortCompare(int a[], int first, int last, int &comparison);
-void quickSortTime(int a[], int first, int last, double &time);
+void quickSortTime(int a[], int n, double &time);
 #endif

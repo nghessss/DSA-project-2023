@@ -44,19 +44,24 @@ int partitionCompare(int a[], int first, int last, int &comparison)
 }
 void quickSortCompare(int a[], int first, int last, int &comparison)
 {
+
     if (++comparison && first < last)
     {
         int pivotIndex = partitionCompare(a, first, last, comparison);
-
         quickSort(a, first, pivotIndex - 1);
         quickSort(a, pivotIndex + 1, last);
     }
 }
-void quickSortTime(int a[], int first, int last, double &time)
+void quickSortCompare(int a[], int n, int &comparison)
+{
+    comparison = 0;
+    quickSortCompare(a, 0, n - 1, comparison);
+}
+void quickSortTime(int a[], int n, double &time)
 {
     clock_t start, end;
     start = clock();
-    quickSort(a, first, last);
+    quickSort(a, 0, n - 1);
     end = clock();
     time = (double)(end - start) / CLOCKS_PER_SEC;
 }
