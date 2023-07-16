@@ -32,23 +32,6 @@ int GetOutputType(char *str)
     }
 }
 
-// Hàm này dùng để chuẩn hóa với dữ liệu đã cho theo thứ tự của thầy thông.
-int ChangeDataType(int DataType)
-{
-    switch (DataType)
-    {
-    case 0:
-        return 0;
-    case 1:
-        return 3;
-    case 2:
-        return 1;
-    case 3:
-        return 2;
-    default:
-        return -1;
-    }
-}
 
 void SortArr(int *&a, int n, char *Algorithm, long long &CountCompare, double &Time, int OutputType, bool &Success)
 {
@@ -247,7 +230,7 @@ void Command_2(char *argv[])
 
     // Creat Array from order
     int *a = new int[size];
-    GenerateData(a, size, ChangeDataType(dataType));
+    GenerateData(a, size, dataType);
 
     // Write down the generated input to the "input.txt" file.
     WriteFile("input.txt", a, size);
@@ -293,7 +276,7 @@ void Command_3(char *argv[])
 
     for (int i = 0; i < 4; i++)
     {
-        GenerateData(a, size, ChangeDataType(i));
+        GenerateData(a, size, i);
         SortArr(a, size, argv[2], CountCompare, Time, OutputType, Success);
         if (!Success)
             break;
@@ -364,7 +347,7 @@ void Command_5(char *argv[])
 
     // Creat Array from array
     a = new int[size];
-    GenerateData(a, size, ChangeDataType(dataType));
+    GenerateData(a, size, dataType);
     b = new int[size];
     memcpy(b, a, 4 * size);
 
