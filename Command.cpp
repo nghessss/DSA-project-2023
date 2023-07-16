@@ -15,6 +15,7 @@ int GetDataType(char *Order)
     cout << "wrong dataType format, please check\n";
     return -1;
 }
+
 // Creat a outputType(0,1,2)
 int GetOutputType(char *str)
 {
@@ -49,7 +50,7 @@ int ChangeDataType(int DataType)
     }
 }
 
-void SortArr(int *&a, int n, char *Algorithm, int &CountCompare, double &Time, int OutputType, bool &Success)
+void SortArr(int *&a, int n, char *Algorithm, long long &CountCompare, double &Time, int OutputType, bool &Success)
 {
     CountCompare = 0;
     Time = 0;
@@ -118,13 +119,13 @@ void PrintOrder(int dataType)
         cout << " Reversed \n";
 }
 
-void PrintResult(double Time, int CountCompare, int OutputType)
+void PrintResult(double Time, long long CountCompare, int OutputType)
 {
     if (OutputType == 0)
-        cout << "Running Time : " << Time << endl;
+        cout << "Running Time : " << Time << " ms " << endl;
     // compare only
     else if (OutputType == 1)
-        cout << "Running Time : " << CountCompare << endl;
+        cout << "Comparision Time : " << CountCompare << " comparisons " << endl;
     // both
     else
     {
@@ -198,7 +199,7 @@ void Command_1(char *argv[])
     int OutputType;
     int size;
     double Time = 0;
-    int CountCompare = 0;
+    long long CountCompare = 0;
     bool Success = true;
 
     OutputType = GetOutputType(argv[4]);
@@ -231,7 +232,7 @@ void Command_2(char *argv[])
     int OutputType;
     int dataType;
     double Time = 0;
-    int CountCompare = 0;
+    long long CountCompare = 0;
     bool Success = true;
 
     // Get output Type(Output parameter)
@@ -277,7 +278,7 @@ void Command_3(char *argv[])
     int size = atoi(argv[3]);
     int OutputType;
     double Time = 0;
-    int CountCompare = 0;
+    long long CountCompare = 0;
     bool Success = true;
 
     OutputType = GetOutputType(argv[4]);
@@ -316,7 +317,7 @@ void Command_4(char *argv[])
     int *a, *b;
     int size;
     double Time1 = 0, Time2 = 0;
-    int CountCompare1 = 0, CountCompare2 = 0;
+    long long CountCompare1 = 0, CountCompare2 = 0;
 
     bool Success = true;
 
@@ -353,7 +354,7 @@ void Command_5(char *argv[])
     int dataType;
     int size = atoi(argv[4]);
     double Time1 = 0, Time2 = 0;
-    int CountCompare1 = 0, CountCompare2 = 0;
+    long long CountCompare1 = 0, CountCompare2 = 0;
     bool Success = true;
 
     // Get datatype for array
@@ -363,7 +364,7 @@ void Command_5(char *argv[])
 
     // Creat Array from array
     a = new int[size];
-    GenerateData(a, size, dataType);
+    GenerateData(a, size, ChangeDataType(dataType));
     b = new int[size];
     memcpy(b, a, 4 * size);
 
