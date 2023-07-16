@@ -23,5 +23,7 @@ void GenerateData(int a[], int n, int dataType);
 void Command_1(char *argv[]);
 void Command_2(char *argv[]);
 void Command_3(char *argv[]);
+void Command_4(char *argv[]);
+void Command_5(char *argv[]);
 
 #endif

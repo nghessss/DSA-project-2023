@@ -15,6 +15,21 @@ int GetDataType(char *Order)
     cout << "wrong dataType format, please check\n";
     return -1;
 }
+// Creat a outputType(0,1,2)
+int GetOutputType(char *str)
+{
+    if (!strcmp(str, "-time"))
+        return 0;
+    else if (!strcmp(str, "-comp"))
+        return 1;
+    else if (!strcmp(str, "-both"))
+        return 2;
+    else
+    {
+        cout << "wrong Output parameter format, please check again\n";
+        return -1;
+    }
+}
 
 // Hàm này dùng để chuẩn hóa với dữ liệu đã cho theo thứ tự của thầy thông.
 int ChangeDataType(int DataType)
@@ -32,10 +47,9 @@ int ChangeDataType(int DataType)
     default:
         return -1;
     }
-
 }
 
-void SortArr(int *&a, int n, char *Algorithm, int &CountCompare, int &Time, int OutputType, bool &Success)
+void SortArr(int *&a, int n, char *Algorithm, int &CountCompare, double &Time, int OutputType, bool &Success)
 {
     CountCompare = 0;
     Time = 0;
@@ -91,22 +105,6 @@ void SortArr(int *&a, int n, char *Algorithm, int &CountCompare, int &Time, int 
     }
 }
 
-// Creat a outputType(0,1,2)
-int GetOutputType(char *str)
-{
-    if (!strcmp(str, "-time"))
-        return 0;
-    else if (!strcmp(str, "-comp"))
-        return 1;
-    else if (!strcmp(str, "-both"))
-        return 2;
-    else
-    {
-        cout << "wrong Output parameter format, please check again\n";
-        return -1;
-    }
-}
-
 void PrintOrder(int dataType)
 {
     cout << "input order: ";
@@ -120,7 +118,7 @@ void PrintOrder(int dataType)
         cout << " Reversed \n";
 }
 
-void PrintResult(int Time, int CountCompare, int OutputType)
+void PrintResult(double Time, int CountCompare, int OutputType)
 {
     if (OutputType == 0)
         cout << "Running Time : " << Time << endl;
@@ -133,6 +131,32 @@ void PrintResult(int Time, int CountCompare, int OutputType)
         cout << "Running Time : " << Time << endl;
         cout << "Comparision : " << CountCompare << endl;
     }
+}
+
+void PrintAlgorithm(char *Algorithm)
+{
+    if (!strcmp(Algorithm, "selection-sort"))
+        cout << "Selection Sort";
+    else if (!strcmp(Algorithm, "insertion-sort"))
+        cout << "Insertion Sort";
+    else if (!strcmp(Algorithm, "bubble-sort"))
+        cout << "Bubble Sort";
+    else if (!strcmp(Algorithm, "shaker-sort"))
+        cout << "Shaker Sort";
+    else if (!strcmp(Algorithm, "shell-sort"))
+        cout << "Shell Sort";
+    else if (!strcmp(Algorithm, "heap-sort"))
+        cout << "Heap Sort";
+    else if (!strcmp(Algorithm, "merge-sort"))
+        cout << "Merge Sort";
+    else if (!strcmp(Algorithm, "quick-sort"))
+        cout << "Quick Sort";
+    else if (!strcmp(Algorithm, "counting-sort"))
+        cout << "Counting Sort";
+    else if (!strcmp(Algorithm, "radix-sort"))
+        cout << "Radix Sort";
+    else if (!strcmp(Algorithm, "flash-sort"))
+        cout << "Flash Sort";
 }
 
 void ReadFile(int *&a, int &n, const char *filename)
@@ -173,7 +197,7 @@ void Command_1(char *argv[])
     int *a;
     int OutputType;
     int size;
-    int Time = 0;
+    double Time = 0;
     int CountCompare = 0;
     bool Success = true;
 
@@ -181,17 +205,19 @@ void Command_1(char *argv[])
     if (OutputType == -1)
         return;
 
-    //Read Array From file
+    // Read Array From file
     ReadFile(a, size, argv[3]);
 
-    //Sort Array
+    // Sort Array
     SortArr(a, size, argv[2], CountCompare, Time, OutputType, Success);
     if (!Success)
         return;
 
     // Result
-    cout << "Input file : " << argv[3] << endl;
-    cout << "Input size : " << size << endl;
+    cout << "Algorithm: ";
+    PrintAlgorithm(argv[2]);
+    cout << "\nInput file: " << argv[3] << endl;
+    cout << "Input size: " << size << endl;
     cout << "---------------------------------\n";
     PrintResult(Time, CountCompare, OutputType);
     WriteFile("output.txt", a, size);
@@ -204,7 +230,7 @@ void Command_2(char *argv[])
     int size = atoi(argv[3]);
     int OutputType;
     int dataType;
-    int Time = 0;
+    double Time = 0;
     int CountCompare = 0;
     bool Success = true;
 
@@ -234,7 +260,9 @@ void Command_2(char *argv[])
     }
 
     // result
-    cout << "input size : " << size << endl;
+    cout << "Algorithm: ";
+    PrintAlgorithm(argv[2]);
+    cout << "\ninput size : " << size << endl;
     PrintOrder(dataType);
     cout << "---------------------------------\n";
     PrintResult(Time, CountCompare, OutputType);
@@ -248,7 +276,7 @@ void Command_3(char *argv[])
 {
     int size = atoi(argv[3]);
     int OutputType;
-    int Time = 0;
+    double Time = 0;
     int CountCompare = 0;
     bool Success = true;
 
@@ -257,6 +285,10 @@ void Command_3(char *argv[])
         return;
 
     int *a = new int[size];
+
+    cout << "Algorithm: ";
+    PrintAlgorithm(argv[2]);
+    cout << "\nInput size: " << size << endl;
 
     for (int i = 0; i < 4; i++)
     {
@@ -277,4 +309,84 @@ void Command_3(char *argv[])
         WriteFile(temp.c_str(), a, size);
     }
     delete[] a;
+}
+
+void Command_4(char *argv[])
+{
+    int *a, *b;
+    int size;
+    double Time1 = 0, Time2 = 0;
+    int CountCompare1 = 0, CountCompare2 = 0;
+
+    bool Success = true;
+
+    // Read array from file
+    ReadFile(a, size, argv[4]);
+    b = new int[size];
+    memcpy(b, a, 4 * size);
+
+    // Sort Array
+    SortArr(a, size, argv[2], CountCompare1, Time1, 2, Success);
+    SortArr(b, size, argv[3], CountCompare2, Time2, 2, Success);
+    if (!Success)
+        return;
+
+    // Result
+    cout << "Algorithm: ";
+    PrintAlgorithm(argv[2]);
+    cout << " | ";
+    PrintAlgorithm(argv[3]);
+    cout << "\nInput file: " << argv[4] << endl;
+    cout << "Input size: " << size << endl;
+    cout << "---------------------------------\n";
+    cout << "Running time: " << Time1 << " | " << Time2 << endl;
+    cout << "Comparisions: " << CountCompare1 << " | " << CountCompare2 << endl;
+
+    // free array
+    delete[] a;
+    delete[] b;
+}
+
+void Command_5(char *argv[])
+{
+    int *a, *b;
+    int dataType;
+    int size = atoi(argv[4]);
+    double Time1 = 0, Time2 = 0;
+    int CountCompare1 = 0, CountCompare2 = 0;
+    bool Success = true;
+
+    // Get datatype for array
+    dataType = GetDataType(argv[5]);
+    if (dataType == -1)
+        return;
+
+    // Creat Array from array
+    a = new int[size];
+    GenerateData(a, size, dataType);
+    b = new int[size];
+    memcpy(b, a, 4 * size);
+
+    // Write down the generated input to the "input.txt" file.
+    WriteFile("input.txt", a, size);
+
+    // Sort Array
+    SortArr(a, size, argv[2], CountCompare1, Time1, 2, Success);
+    SortArr(b, size, argv[3], CountCompare2, Time2, 2, Success);
+    if (!Success)
+        return;
+
+    // print result
+    cout << "Algorithm: ";
+    PrintAlgorithm(argv[2]);
+    cout << " | ";
+    PrintAlgorithm(argv[3]);
+    cout << "\nInput size : " << size << endl;
+    PrintOrder(dataType);
+    cout << "---------------------------------\n";
+    cout << "Running time: " << Time1 << " | " << Time2 << endl;
+    cout << "Comparisions: " << CountCompare1 << " | " << CountCompare2 << endl;
+
+    delete[] a;
+    delete[] b;
 }
