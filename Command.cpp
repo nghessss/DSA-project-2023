@@ -32,6 +32,13 @@ int GetOutputType(char *str)
     }
 }
 
+int *CopyArr(int *a, int n)
+{
+    int *b = new int[n];
+    for (int i = 0; i < n; i++)
+        b[i] = a[i];
+    return b;
+}
 
 void SortArr(int *&a, int n, char *Algorithm, long long &CountCompare, double &Time, int OutputType, bool &Success)
 {
@@ -40,47 +47,168 @@ void SortArr(int *&a, int n, char *Algorithm, long long &CountCompare, double &T
 
     if (!strcmp(Algorithm, "selection-sort"))
     {
-        // call Selection Sort
+        if (OutputType == 0)
+            selectionSortTime(a, n, Time);
+        else if (OutputType == 1)
+            selectionSortCompare(a, n, CountCompare);
+        else
+        {
+            int *b = CopyArr(a, n);
+            selectionSortTime(a, n, Time);
+            selectionSortCompare(b, n, CountCompare);
+
+            delete[] b;
+        }
     }
     else if (!strcmp(Algorithm, "insertion-sort"))
     {
-        // call insert sort
+        if (OutputType == 0)
+            insertionSortTime(a, n, Time);
+        else if (OutputType == 1)
+            insertionSortCompare(a, n, CountCompare);
+        else
+        {
+            int *b = CopyArr(a, n);
+            insertionSortTime(a, n, Time);
+            insertionSortCompare(b, n, CountCompare);
+
+            delete[] b;
+        }
     }
     else if (!strcmp(Algorithm, "bubble-sort"))
     {
-        // call bubble sort
+        if (OutputType == 0)
+            bubbleSortTime(a, n, Time);
+        else if (OutputType == 1)
+            bubbleSortCompare(a, n, CountCompare);
+        else
+        {
+            int *b = CopyArr(a, n);
+            bubbleSortTime(a, n, Time);
+            bubbleSortCompare(b, n, CountCompare);
+
+            delete[] b;
+        }
     }
     else if (!strcmp(Algorithm, "shaker-sort"))
     {
-        // call shaker sort
+        if (OutputType == 0)
+            shakerSortTime(a, n, Time);
+        else if (OutputType == 1)
+            shakerSortCompare(a, n, CountCompare);
+        else
+        {
+            int *b = CopyArr(a, n);
+            shakerSortTime(a, n, Time);
+            shakerSortCompare(b, n, CountCompare);
+
+            delete[] b;
+        }
     }
     else if (!strcmp(Algorithm, "shell-sort"))
     {
-        // call shell sort
+        if (OutputType == 0)
+            shellSortTime(a, n, Time);
+        else if (OutputType == 1)
+            shellSortCompare(a, n, CountCompare);
+        else
+        {
+            int *b = CopyArr(a, n);
+            shellSortTime(a, n, Time);
+            shellSortCompare(b, n, CountCompare);
+
+            delete[] b;
+        }
     }
     else if (!strcmp(Algorithm, "heap-sort"))
     {
-        // call heap sort
+        if (OutputType == 0)
+            heapSortTime(a, n, Time);
+        else if (OutputType == 1)
+            heapSortCompare(a, n, CountCompare);
+        else
+        {
+            int *b = CopyArr(a, n);
+            heapSortTime(a, n, Time);
+            heapSortCompare(b, n, CountCompare);
+
+            delete[] b;
+        }
     }
     else if (!strcmp(Algorithm, "merge-sort"))
     {
-        // call merge sort
+        if (OutputType == 0)
+            mergeSortTime(a, 0, n - 1, Time);
+        else if (OutputType == 1)
+            mergeSortCompare(a, 0, n - 1, CountCompare);
+        else
+        {
+            int *b = CopyArr(a, n);
+            mergeSortTime(a, 0, n - 1, Time);
+            mergeSortCompare(b, 0, n, CountCompare);
+
+            delete[] b;
+        }
     }
     else if (!strcmp(Algorithm, "quick-sort"))
     {
-        // call quick sort
+        if (OutputType == 0)
+            quickSortTime(a, n, Time);
+        else if (OutputType == 1)
+            quickSortCompare(a, 0, n - 1, CountCompare);
+        else
+        {
+            int *b = CopyArr(a, n);
+            quickSortTime(a, n, Time);
+            quickSortCompare(b, 0, n - 1, CountCompare);
+
+            delete[] b;
+        }
     }
     else if (!strcmp(Algorithm, "counting-sort"))
     {
-        // call counting sort
+        if (OutputType == 0)
+            countingSortTime(a, n, Time);
+        else if (OutputType == 1)
+            countingSortCompare(a, n, CountCompare);
+        else
+        {
+            int *b = CopyArr(a, n);
+            countingSortTime(a, n, Time);
+            countingSortCompare(b, n, CountCompare);
+
+            delete[] b;
+        }
     }
     else if (!strcmp(Algorithm, "radix-sort"))
     {
-        // call radix sort
+        if (OutputType == 0)
+            radixSortTime(a, n, Time);
+        else if (OutputType == 1)
+            radixSortCompare(a, n, CountCompare);
+        else
+        {
+            int *b = CopyArr(a, n);
+            radixSortTime(a, n, Time);
+            radixSortCompare(b, n, CountCompare);
+
+            delete[] b;
+        }
     }
     else if (!strcmp(Algorithm, "flash-sort"))
     {
-        // call flash sort
+        if (OutputType == 0)
+            flashSortTime(a, n, Time);
+        else if (OutputType == 1)
+            flashSortCompare(a, n, CountCompare);
+        else
+        {
+            int *b = CopyArr(a, n);
+            flashSortTime(a, n, Time);
+            flashSortCompare(b, n, CountCompare);
+
+            delete[] b;
+        }
     }
     else
     {

@@ -7,7 +7,7 @@
 #include <iostream>
 
 void selectionSort(int* a,int n);
-void selectionSortCompare(int* a,int n,int& compare);
+void selectionSortCompare(int* a,int n,long long& compare);
 void selectionSortTime(int* a,int n,double& time);
 
 #endif

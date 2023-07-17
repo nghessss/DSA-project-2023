@@ -5,9 +5,13 @@
 #include <iostream>
 #include "time.h"
 using namespace std;
+
+
 int partition(int a[], int first, int last);
 void quickSort(int a[], int low, int high);
 int partitionCompare(int a[], int first, int last, long long &comparison);
 void quickSortCompare(int a[], int first, int last, long long &comparison);
 void quickSortTime(int a[], int n, double &time);
+
+
 #endif

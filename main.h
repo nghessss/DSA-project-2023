@@ -1,3 +1,4 @@
+
 #ifndef MAIN_H
 #define MAIN_H
 
@@ -6,6 +7,18 @@
 #include<fstream>
 #include<cstring>
 #include<time.h>
+#include"BubbleSort/bubbleSort.h"
+#include"counting-sort/countingSort.h"
+#include"flash-sort/flashSort.h"
+#include"HeapSort/heapSort.h"
+#include"InsertionSort/insertionSort.h"
+#include"MergeSort/mergeSort.h"
+#include"quick-sort/quickSort.h"
+#include"radix-sort/radixSort.h"
+#include"SelectionSort/selectionSort.h"
+#include"shaker-sort/shakeSort.h"
+#include"shell-sort/shellSort.h"
+
 using namespace std;
 
 
