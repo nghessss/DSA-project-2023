@@ -11,9 +11,9 @@ void countingSort(int a[], int n, int exp);
 
 void radixSort(int a[], int n);
 
-void countingSortCompare(int a[], int n, int exp, int &comparison);
+void countingSortCompare(int a[], int n, int exp, long long &comparison);
 
-void radixSortCompare(int a[], int n, int &comparison);
+void radixSortCompare(int a[], int n, long long &comparison);
 
 void radixSortTime(int a[], int n, double &time);
 

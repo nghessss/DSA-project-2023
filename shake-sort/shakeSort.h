@@ -9,7 +9,7 @@ using namespace std;
 
 void shakerSort(int a[], int n);
 
-void shakerSortCompare(int a[], int n, int &comparison);
+void shakerSortCompare(int a[], int n, long long &comparison);
 
-void shakerSortCompare(int a[], int n, double &time);
+void shakerSortTime(int a[], int n, double &time);
 #endif

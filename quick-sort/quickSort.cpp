@@ -26,7 +26,7 @@ void quickSort(int a[], int first, int last)
     }
 }
 
-int partitionCompare(int a[], int first, int last, int &comparison)
+int partitionCompare(int a[], int first, int last, long long &comparison)
 {
     int pivot = a[first];
     int l, r;
@@ -42,7 +42,7 @@ int partitionCompare(int a[], int first, int last, int &comparison)
     swap(a[first], a[l]);
     return l;
 }
-void quickSortCompare(int a[], int first, int last, int &comparison)
+void quickSortCompare(int a[], int first, int last, long long &comparison)
 {
 
     if (++comparison && first < last)
@@ -52,7 +52,7 @@ void quickSortCompare(int a[], int first, int last, int &comparison)
         quickSort(a, pivotIndex + 1, last);
     }
 }
-void quickSortCompare(int a[], int n, int &comparison)
+void quickSortCompare(int a[], int n, long long &comparison)
 {
     comparison = 0;
     quickSortCompare(a, 0, n - 1, comparison);

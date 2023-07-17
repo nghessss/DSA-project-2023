@@ -35,7 +35,7 @@ void radixSort(int a[], int n)
         countingSort(a, n, exp);
 }
 
-void countingSortCompare(int a[], int n, int exp, int &comparison)
+void countingSortCompare(int a[], int n, int exp, long long &comparison)
 {
     int *output = new int[n];
     int *count = new int[10];
@@ -59,7 +59,7 @@ void countingSortCompare(int a[], int n, int exp, int &comparison)
     delete count;
 }
 
-void radixSortCompare(int a[], int n, int &comparison)
+void radixSortCompare(int a[], int n, long long &comparison)
 {
     comparison = 0;
     int maxNum = a[0];

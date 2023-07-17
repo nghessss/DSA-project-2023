@@ -22,7 +22,7 @@ void countingSort(int a[], int n)
         }
     delete count;
 }
-void countingSortCompare(int a[], int n, int &comparison)
+void countingSortCompare(int a[], int n, long long &comparison)
 {
     comparison = 0;
     int maxNum = 0;

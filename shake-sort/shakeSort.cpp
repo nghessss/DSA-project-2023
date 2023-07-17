@@ -24,7 +24,7 @@ void shakerSort(int a[], int n)
         left = k;
     }
 }
-void shakerSortCompare(int a[], int n, int &comparison)
+void shakerSortCompare(int a[], int n, long long &comparison)
 {
     comparison = 0;
     int left, right, k, i;
@@ -50,7 +50,7 @@ void shakerSortCompare(int a[], int n, int &comparison)
         left = k;
     }
 }
-void shakerSortCompare(int a[], int n, double &time)
+void shakerSortTime(int a[], int n, double &time)
 {
     clock_t start, end;
     start = clock();
