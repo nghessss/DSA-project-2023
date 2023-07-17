@@ -59,7 +59,7 @@ void mergeSortTime(int *a, int left, int right, double &time)
     time = (double)(end - start) / CLOCKS_PER_SEC * 1000;
 }
 
-void mergeCompare(int *a, int left, int mid, int right, int &compare)
+void mergeCompare(int *a, int left, int mid, int right, long long &compare)
 {
     int n1 = mid - left + 1;
     int n2 = right - mid;
@@ -90,7 +90,7 @@ void mergeCompare(int *a, int left, int mid, int right, int &compare)
         a[k++] = R[j++];
 }
 
-void mergeSortCompare1(int *a, int left, int right, int &compare)
+void mergeSortCompare1(int *a, int left, int right, long long &compare)
 {
     if (++compare && left < right)
     {
@@ -105,7 +105,7 @@ void mergeSortCompare1(int *a, int left, int right, int &compare)
     }
 }
 
-void mergeSortCompare(int *a, int left, int right, int &compare)
+void mergeSortCompare(int *a, int left, int right, long long &compare)
 {
     compare = 0;
     mergeSortCompare1(a,left,right,compare);

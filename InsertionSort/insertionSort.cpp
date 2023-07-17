@@ -18,7 +18,7 @@ void insertionSort(int* a,int n)
         a[j + 1] = key;
     }
 }
-void insertionSortCompare(int* a,int n,int& compare)
+void insertionSortCompare(int* a,int n,long long& compare)
 {
     compare = 0;
     int i, key, j;

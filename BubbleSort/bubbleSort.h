@@ -7,7 +7,7 @@
 #include <iostream>
 
 void bubbleSort(int* a,int n);
-void bubbleSortCompare(int* a,int n,int& compare);
+void bubbleSortCompare(int* a,int n,long long& compare);
 void bubbleSortTime(int* a,int n,double& time);
 
 #endif

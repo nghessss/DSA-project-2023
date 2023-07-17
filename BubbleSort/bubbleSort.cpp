@@ -25,7 +25,7 @@ void bubbleSort(int *a, int n)
     }
 }
 
-void bubbleSortCompare(int *a, int n, int &compare)
+void bubbleSortCompare(int *a, int n, long long &compare)
 {
     compare = 0;
     // loop to access each array element

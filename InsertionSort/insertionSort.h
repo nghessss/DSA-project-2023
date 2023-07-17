@@ -7,7 +7,7 @@
 #include <iostream>
 
 void insertionSort(int* a,int n);
-void insertionSortCompare(int* a,int n,int& compare);
+void insertionSortCompare(int* a,int n,long long& compare);
 void insertionSortTime(int* a,int n,double& time);
 
 #endif

@@ -41,7 +41,7 @@ void heapify(int *a, int N, int i)
         heapify(a, N, largest);
     }
 }
-void heapifyCompare(int *a, int N, int i, int &compare)
+void heapifyCompare(int *a, int N, int i, long long &compare)
 {
     // Find largest among root,
     // left child and right child
@@ -79,7 +79,7 @@ void heapifyCompare(int *a, int N, int i, int &compare)
         heapifyCompare(a, N, largest, compare);
     }
 }
-void heapSortCompare(int *a, int N, int &compare)
+void heapSortCompare(int *a, int N, long long &compare)
 {
     compare = 0;
     // Build max heap

@@ -7,7 +7,7 @@
 #include <iostream>
 
 void heapSort(int* a,int n);
-void heapSortCompare(int* a,int n,int& compare);
+void heapSortCompare(int* a,int n,long long& compare);
 void heapSortTime(int* a,int n,double& time);
 
 #endif

@@ -9,6 +9,6 @@
 
 void mergeSort(int* a,int left,int right);
 void mergeSortTime(int* a,int left,int right,double& time);
-void mergeSortCompare(int* a,int left,int right,int& compare);
+void mergeSortCompare(int* a,int left,int right,long long& compare);
 
 #endif
