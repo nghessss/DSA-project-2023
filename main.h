@@ -7,17 +7,17 @@
 #include<fstream>
 #include<cstring>
 #include<time.h>
-#include"BubbleSort/bubbleSort.h"
-#include"counting-sort/countingSort.h"
-#include"flash-sort/flashSort.h"
-#include"HeapSort/heapSort.h"
-#include"InsertionSort/insertionSort.h"
-#include"MergeSort/mergeSort.h"
-#include"quick-sort/quickSort.h"
-#include"radix-sort/radixSort.h"
-#include"SelectionSort/selectionSort.h"
-#include"shaker-sort/shakeSort.h"
-#include"shell-sort/shellSort.h"
+#include"Header/bubbleSort.h"
+#include"Header/countingSort.h"
+#include"Header/flashSort.h"
+#include"Header/heapSort.h"
+#include"Header/insertionSort.h"
+#include"Header/mergeSort.h"
+#include"Header/quickSort.h"
+#include"Header/radixSort.h"
+#include"Header/selectionSort.h"
+#include"Header/shakeSort.h"
+#include"Header/shellSort.h"
 
 using namespace std;
 

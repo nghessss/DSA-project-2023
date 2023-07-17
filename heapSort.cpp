@@ -1,4 +1,4 @@
-#include "heapSort.h"
+#include "Header/heapSort.h"
 
 // To heapify a subtree rooted with node i
 // which is an index in arr[].

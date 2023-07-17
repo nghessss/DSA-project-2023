@@ -1,4 +1,4 @@
-#include "bubbleSort.h"
+#include "Header/bubbleSort.h"
 
 void bubbleSort(int *a, int n)
 {

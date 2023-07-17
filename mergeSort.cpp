@@ -1,4 +1,4 @@
-#include "mergeSort.h"
+#include "Header/mergeSort.h"
 
 void merge(int *a, int left, int mid, int right)
 {

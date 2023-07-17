@@ -1,4 +1,4 @@
-#include "selectionSort.h"
+#include "Header/selectionSort.h"
 
 void selectionSort(int *a, int n)
 {

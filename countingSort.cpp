@@ -1,4 +1,4 @@
-#include "countingSort.h"
+#include "Header/countingSort.h"
 
 void countingSort(int a[], int n)
 {

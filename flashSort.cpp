@@ -3,7 +3,8 @@
     https://github.com/HaiDuc0147/sortingAlgorithm
 */
 
-#include "flashSort.h"
+#include "Header/flashSort.h"
+#include"main.h"
 
 // Flash Sort algorithm implementation
 void flashSort(int a[], int n)

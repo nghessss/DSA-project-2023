@@ -1,4 +1,4 @@
-#include "quickSort.h"
+#include "Header/quickSort.h"
 int partition(int a[], int first, int last)
 {
     int pivot = a[first];
