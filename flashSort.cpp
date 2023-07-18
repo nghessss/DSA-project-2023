@@ -159,7 +159,7 @@ void flashSortTime(int a[], int n, double &time)
     flashSort(a, n);
 
     end = clock();
-    time = (double)(end - start) / CLOCKS_PER_SEC;
+    time = (double)(end - start) / CLOCKS_PER_SEC * 1000;
 
     // Sort each bucket
     double timeInsert;

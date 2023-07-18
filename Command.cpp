@@ -155,12 +155,12 @@ void SortArr(int *&a, int n, char *Algorithm, long long &CountCompare, double &T
         if (OutputType == 0)
             quickSortTime(a, n, Time);
         else if (OutputType == 1)
-            quickSortCompare(a, 0, n - 1, CountCompare);
+            quickSortCompare(a, n, CountCompare);
         else
         {
             int *b = CopyArr(a, n);
             quickSortTime(a, n, Time);
-            quickSortCompare(b, 0, n - 1, CountCompare);
+            quickSortCompare(b, n, CountCompare);
 
             delete[] b;
         }
@@ -404,7 +404,13 @@ void Command_3(char *argv[])
 
     for (int i = 0; i < 4; i++)
     {
+
         GenerateData(a, size, i);
+        string temp = "input_";
+        temp += to_string(i + 1);
+        temp += ".txt";
+        WriteFile(temp.c_str(), a, size);
+        
         SortArr(a, size, argv[2], CountCompare, Time, OutputType, Success);
         if (!Success)
             break;
@@ -413,12 +419,6 @@ void Command_3(char *argv[])
         cout << "---------------------------------\n";
         PrintResult(Time, CountCompare, OutputType);
         cout << "\n";
-
-        // Get name of file
-        string temp = "input_";
-        temp += to_string(i + 1);
-        temp += ".txt";
-        WriteFile(temp.c_str(), a, size);
     }
     delete[] a;
 }
@@ -434,8 +434,7 @@ void Command_4(char *argv[])
 
     // Read array from file
     ReadFile(a, size, argv[4]);
-    b = new int[size];
-    memcpy(b, a, 4 * size);
+    b = CopyArr(a, size);
 
     // Sort Array
     SortArr(a, size, argv[2], CountCompare1, Time1, 2, Success);
@@ -476,8 +475,7 @@ void Command_5(char *argv[])
     // Creat Array from array
     a = new int[size];
     GenerateData(a, size, dataType);
-    b = new int[size];
-    memcpy(b, a, 4 * size);
+    b = CopyArr(a, size);
 
     // Write down the generated input to the "input.txt" file.
     WriteFile("input.txt", a, size);

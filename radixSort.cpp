@@ -77,5 +77,5 @@ void radixSortTime(int a[], int n, double &time)
     start = clock();
     radixSort(a, n);
     end = clock();
-    time = (double)(end - start) / CLOCKS_PER_SEC;
+    time = (double)(end - start) / CLOCKS_PER_SEC * 1000;
 }

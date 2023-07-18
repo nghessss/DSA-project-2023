@@ -63,5 +63,5 @@ void quickSortTime(int a[], int n, double &time)
     start = clock();
     quickSort(a, 0, n - 1);
     end = clock();
-    time = (double)(end - start) / CLOCKS_PER_SEC;
+    time = (double)(end - start) / CLOCKS_PER_SEC * 1000;
 }
