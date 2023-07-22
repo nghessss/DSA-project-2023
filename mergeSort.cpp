@@ -46,13 +46,13 @@ void mergeSort(int *a, int left, int right)
     }
 }
 
-void mergeSortTime(int *a, int left, int right, double &time)
+void mergeSortTime(int *a, int n, double &time)
 {
     time = 0;
     clock_t start, end;
 
     start = clock();
-    mergeSort(a, left, right);
+    mergeSort(a, 0, n - 1);
     end = clock();
 
     // Measuring time
@@ -97,16 +97,16 @@ void mergeSortCompare1(int *a, int left, int right, long long &compare)
         int mid = left + (right - left) / 2;
 
         // Sort the left and right halves
-        mergeSortCompare1(a, left, mid,compare);
-        mergeSortCompare1(a, mid + 1, right,compare);
+        mergeSortCompare1(a, left, mid, compare);
+        mergeSortCompare1(a, mid + 1, right, compare);
 
         // Merge the two sorted halves
-        mergeCompare(a, left, mid, right,compare);
+        mergeCompare(a, left, mid, right, compare);
     }
 }
 
-void mergeSortCompare(int *a, int left, int right, long long &compare)
+void mergeSortCompare(int *a, int n, long long &compare)
 {
     compare = 0;
-    mergeSortCompare1(a,left,right,compare);
+    mergeSortCompare1(a, 0, n - 1, compare);
 }

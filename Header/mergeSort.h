@@ -6,9 +6,8 @@
 #include <time.h>
 #include <iostream>
 
-
-void mergeSort(int* a,int left,int right);
-void mergeSortTime(int* a,int left,int right,double& time);
-void mergeSortCompare(int* a,int left,int right,long long& compare);
+void mergeSort(int *a, int left, int right);
+void mergeSortTime(int *a, int n, double &time);
+void mergeSortCompare(int *a, int n, long long &compare);
 
 #endif

@@ -1,5 +1,37 @@
 #include "main.h"
 
+string Order[] = {"Randomize", "Nearly Sorted", "Sorted", "Reversed"};
+string Algorithm[] = {"Selection Sort", "Insertion Sort", "Bubble Sort", "Shaker Sort", "Shell Sort", "Heap Sort", "Merge Sort", "Quick Sort", "Counting Sort", "Radix Sort", "Flash Sort"};
+
+typedef void (*SortFunction)(int *, int, long long &);
+typedef void (*SortTimeFunction)(int *, int, double &);
+
+SortFunction sortingFunctions[] = {
+    selectionSortCompare,
+    insertionSortCompare,
+    bubbleSortCompare,
+    shakerSortCompare,
+    shellSortCompare,
+    heapSortCompare,
+    mergeSortCompare,
+    quickSortCompare,
+    countingSortCompare,
+    radixSortCompare,
+    flashSortCompare};
+
+SortTimeFunction sortingTimeFunctions[] = {
+    selectionSortTime,
+    insertionSortTime,
+    bubbleSortTime,
+    shakerSortTime,
+    shellSortTime,
+    heapSortTime,
+    mergeSortTime,
+    quickSortTime,
+    countingSortTime,
+    radixSortTime,
+    flashSortTime};
+
 // this func will take the order of data (0 : randomize; 1 : sorted; 2 : reversed; 3 :Nearly Sorted)
 int GetDataType(char *Order)
 {
@@ -32,6 +64,35 @@ int GetOutputType(char *str)
     }
 }
 
+int GetAlgorithmType(char *Algorithm)
+{
+    if (!strcmp(Algorithm, "selection-sort"))
+        return 0;
+    else if (!strcmp(Algorithm, "insertion-sort"))
+        return 1;
+    else if (!strcmp(Algorithm, "bubble-sort"))
+        return 2;
+    else if (!strcmp(Algorithm, "shaker-sort"))
+        return 3;
+    else if (!strcmp(Algorithm, "shell-sort"))
+        return 4;
+    else if (!strcmp(Algorithm, "heap-sort"))
+        return 5;
+    else if (!strcmp(Algorithm, "merge-sort"))
+        return 6;
+    else if (!strcmp(Algorithm, "quick-sort"))
+        return 7;
+    else if (!strcmp(Algorithm, "counting-sort"))
+        return 8;
+    else if (!strcmp(Algorithm, "radix-sort"))
+        return 9;
+    else if (!strcmp(Algorithm, "flash-sort"))
+        return 10;
+
+    cout << "Wrong Algorithm, please check your command line\n";
+    return -1;
+}
+
 int *CopyArr(int *a, int n)
 {
     int *b = new int[n];
@@ -39,195 +100,22 @@ int *CopyArr(int *a, int n)
         b[i] = a[i];
     return b;
 }
-
-void SortArr(int *&a, int n, char *Algorithm, long long &CountCompare, double &Time, int OutputType, bool &Success)
+void SortArray(int *a, int n, SortFunction sortingFunction, SortTimeFunction timeFunction, long long &CountCompare, double &Time, int OutputType)
 {
-    CountCompare = 0;
     Time = 0;
-
-    if (!strcmp(Algorithm, "selection-sort"))
-    {
-        if (OutputType == 0)
-            selectionSortTime(a, n, Time);
-        else if (OutputType == 1)
-            selectionSortCompare(a, n, CountCompare);
-        else
-        {
-            int *b = CopyArr(a, n);
-            selectionSortTime(a, n, Time);
-            selectionSortCompare(b, n, CountCompare);
-
-            delete[] b;
-        }
-    }
-    else if (!strcmp(Algorithm, "insertion-sort"))
-    {
-        if (OutputType == 0)
-            insertionSortTime(a, n, Time);
-        else if (OutputType == 1)
-            insertionSortCompare(a, n, CountCompare);
-        else
-        {
-            int *b = CopyArr(a, n);
-            insertionSortTime(a, n, Time);
-            insertionSortCompare(b, n, CountCompare);
-
-            delete[] b;
-        }
-    }
-    else if (!strcmp(Algorithm, "bubble-sort"))
-    {
-        if (OutputType == 0)
-            bubbleSortTime(a, n, Time);
-        else if (OutputType == 1)
-            bubbleSortCompare(a, n, CountCompare);
-        else
-        {
-            int *b = CopyArr(a, n);
-            bubbleSortTime(a, n, Time);
-            bubbleSortCompare(b, n, CountCompare);
-
-            delete[] b;
-        }
-    }
-    else if (!strcmp(Algorithm, "shaker-sort"))
-    {
-        if (OutputType == 0)
-            shakerSortTime(a, n, Time);
-        else if (OutputType == 1)
-            shakerSortCompare(a, n, CountCompare);
-        else
-        {
-            int *b = CopyArr(a, n);
-            shakerSortTime(a, n, Time);
-            shakerSortCompare(b, n, CountCompare);
-
-            delete[] b;
-        }
-    }
-    else if (!strcmp(Algorithm, "shell-sort"))
-    {
-        if (OutputType == 0)
-            shellSortTime(a, n, Time);
-        else if (OutputType == 1)
-            shellSortCompare(a, n, CountCompare);
-        else
-        {
-            int *b = CopyArr(a, n);
-            shellSortTime(a, n, Time);
-            shellSortCompare(b, n, CountCompare);
-
-            delete[] b;
-        }
-    }
-    else if (!strcmp(Algorithm, "heap-sort"))
-    {
-        if (OutputType == 0)
-            heapSortTime(a, n, Time);
-        else if (OutputType == 1)
-            heapSortCompare(a, n, CountCompare);
-        else
-        {
-            int *b = CopyArr(a, n);
-            heapSortTime(a, n, Time);
-            heapSortCompare(b, n, CountCompare);
-
-            delete[] b;
-        }
-    }
-    else if (!strcmp(Algorithm, "merge-sort"))
-    {
-        if (OutputType == 0)
-            mergeSortTime(a, 0, n - 1, Time);
-        else if (OutputType == 1)
-            mergeSortCompare(a, 0, n - 1, CountCompare);
-        else
-        {
-            int *b = CopyArr(a, n);
-            mergeSortTime(a, 0, n - 1, Time);
-            mergeSortCompare(b, 0, n, CountCompare);
-
-            delete[] b;
-        }
-    }
-    else if (!strcmp(Algorithm, "quick-sort"))
-    {
-        if (OutputType == 0)
-            quickSortTime(a, n, Time);
-        else if (OutputType == 1)
-            quickSortCompare(a, n, CountCompare);
-        else
-        {
-            int *b = CopyArr(a, n);
-            quickSortTime(a, n, Time);
-            quickSortCompare(b, n, CountCompare);
-
-            delete[] b;
-        }
-    }
-    else if (!strcmp(Algorithm, "counting-sort"))
-    {
-        if (OutputType == 0)
-            countingSortTime(a, n, Time);
-        else if (OutputType == 1)
-            countingSortCompare(a, n, CountCompare);
-        else
-        {
-            int *b = CopyArr(a, n);
-            countingSortTime(a, n, Time);
-            countingSortCompare(b, n, CountCompare);
-
-            delete[] b;
-        }
-    }
-    else if (!strcmp(Algorithm, "radix-sort"))
-    {
-        if (OutputType == 0)
-            radixSortTime(a, n, Time);
-        else if (OutputType == 1)
-            radixSortCompare(a, n, CountCompare);
-        else
-        {
-            int *b = CopyArr(a, n);
-            radixSortTime(a, n, Time);
-            radixSortCompare(b, n, CountCompare);
-
-            delete[] b;
-        }
-    }
-    else if (!strcmp(Algorithm, "flash-sort"))
-    {
-        if (OutputType == 0)
-            flashSortTime(a, n, Time);
-        else if (OutputType == 1)
-            flashSortCompare(a, n, CountCompare);
-        else
-        {
-            int *b = CopyArr(a, n);
-            flashSortTime(a, n, Time);
-            flashSortCompare(b, n, CountCompare);
-
-            delete[] b;
-        }
-    }
+    CountCompare = 0;
+    // only time
+    if (OutputType == 0)
+        timeFunction(a, n, Time);
+    else if (OutputType == 1)
+        sortingFunction(a, n, CountCompare);
     else
     {
-        cout << "wrong ahgorithm format, please try again\n";
-        Success = false;
+        int *b = CopyArr(a, n);
+        timeFunction(a, n, Time);
+        sortingFunction(b, n, CountCompare);
+        delete[] b;
     }
-}
-
-void PrintOrder(int dataType)
-{
-    cout << "input order: ";
-    if (dataType == 0)
-        cout << " Randomize \n";
-    else if (dataType == 1)
-        cout << " Nearly Sorted \n";
-    else if (dataType == 2)
-        cout << " Sorted \n";
-    else
-        cout << " Reversed \n";
 }
 
 void PrintResult(double Time, long long CountCompare, int OutputType)
@@ -245,32 +133,6 @@ void PrintResult(double Time, long long CountCompare, int OutputType)
     }
 }
 
-void PrintAlgorithm(char *Algorithm)
-{
-    if (!strcmp(Algorithm, "selection-sort"))
-        cout << "Selection Sort";
-    else if (!strcmp(Algorithm, "insertion-sort"))
-        cout << "Insertion Sort";
-    else if (!strcmp(Algorithm, "bubble-sort"))
-        cout << "Bubble Sort";
-    else if (!strcmp(Algorithm, "shaker-sort"))
-        cout << "Shaker Sort";
-    else if (!strcmp(Algorithm, "shell-sort"))
-        cout << "Shell Sort";
-    else if (!strcmp(Algorithm, "heap-sort"))
-        cout << "Heap Sort";
-    else if (!strcmp(Algorithm, "merge-sort"))
-        cout << "Merge Sort";
-    else if (!strcmp(Algorithm, "quick-sort"))
-        cout << "Quick Sort";
-    else if (!strcmp(Algorithm, "counting-sort"))
-        cout << "Counting Sort";
-    else if (!strcmp(Algorithm, "radix-sort"))
-        cout << "Radix Sort";
-    else if (!strcmp(Algorithm, "flash-sort"))
-        cout << "Flash Sort";
-}
-
 void ReadFile(int *&a, int &n, const char *filename)
 {
     ifstream is;
@@ -282,8 +144,8 @@ void ReadFile(int *&a, int &n, const char *filename)
     }
     is >> n;
     is.ignore();
+    
     a = new int[n];
-
     int idx = 0;
     while (!is.eof())
     {
@@ -308,6 +170,7 @@ void Command_1(char *argv[])
 {
     int *a;
     int OutputType;
+    int AlgorithmType;
     int size;
     double Time = 0;
     long long CountCompare = 0;
@@ -317,17 +180,20 @@ void Command_1(char *argv[])
     if (OutputType == -1)
         return;
 
+    AlgorithmType = GetAlgorithmType(argv[2]);
+    if (AlgorithmType == -1)
+        return;
+
     // Read Array From file
     ReadFile(a, size, argv[3]);
 
     // Sort Array
-    SortArr(a, size, argv[2], CountCompare, Time, OutputType, Success);
+    SortArray(a, size, sortingFunctions[AlgorithmType], sortingTimeFunctions[AlgorithmType], CountCompare, Time, OutputType);
     if (!Success)
         return;
 
     // Result
-    cout << "Algorithm: ";
-    PrintAlgorithm(argv[2]);
+    cout << "Algorithm: " << Algorithm[AlgorithmType] << endl;
     cout << "\nInput file: " << argv[3] << endl;
     cout << "Input size: " << size << endl;
     cout << "---------------------------------\n";
@@ -342,6 +208,7 @@ void Command_2(char *argv[])
     int size = atoi(argv[3]);
     int OutputType;
     int dataType;
+    int AlgorithmType;
     double Time = 0;
     long long CountCompare = 0;
     bool Success = true;
@@ -356,6 +223,10 @@ void Command_2(char *argv[])
     if (dataType == -1)
         return;
 
+    AlgorithmType = GetAlgorithmType(argv[2]);
+    if (AlgorithmType == -1)
+        return;
+
     // Creat Array from order
     int *a = new int[size];
     GenerateData(a, size, dataType);
@@ -364,7 +235,7 @@ void Command_2(char *argv[])
     WriteFile("input.txt", a, size);
 
     // choose algorithm
-    SortArr(a, size, argv[2], CountCompare, Time, OutputType, Success);
+    SortArray(a, size, sortingFunctions[AlgorithmType], sortingTimeFunctions[AlgorithmType], CountCompare, Time, OutputType);
     if (!Success)
     {
         delete[] a;
@@ -372,10 +243,9 @@ void Command_2(char *argv[])
     }
 
     // result
-    cout << "Algorithm: ";
-    PrintAlgorithm(argv[2]);
+    cout << "Algorithm: " << Algorithm[AlgorithmType];
     cout << "\ninput size : " << size << endl;
-    PrintOrder(dataType);
+    cout << "Input order: " << Order[dataType] << endl;
     cout << "---------------------------------\n";
     PrintResult(Time, CountCompare, OutputType);
     WriteFile("output.txt", a, size);
@@ -388,6 +258,7 @@ void Command_3(char *argv[])
 {
     int size = atoi(argv[3]);
     int OutputType;
+    int AlgorithmType;
     double Time = 0;
     long long CountCompare = 0;
     bool Success = true;
@@ -396,10 +267,13 @@ void Command_3(char *argv[])
     if (OutputType == -1)
         return;
 
+    AlgorithmType = GetAlgorithmType(argv[2]);
+    if (AlgorithmType == -1)
+        return;
+
     int *a = new int[size];
 
-    cout << "Algorithm: ";
-    PrintAlgorithm(argv[2]);
+    cout << "Algorithm: " << Algorithm[AlgorithmType];
     cout << "\nInput size: " << size << endl;
 
     for (int i = 0; i < 4; i++)
@@ -410,12 +284,12 @@ void Command_3(char *argv[])
         temp += to_string(i + 1);
         temp += ".txt";
         WriteFile(temp.c_str(), a, size);
-        
-        SortArr(a, size, argv[2], CountCompare, Time, OutputType, Success);
+
+        SortArray(a, size, sortingFunctions[AlgorithmType], sortingTimeFunctions[AlgorithmType], CountCompare, Time, OutputType);
         if (!Success)
             break;
 
-        PrintOrder(i);
+        cout << "Input order: " << Order[i] << endl;
         cout << "---------------------------------\n";
         PrintResult(Time, CountCompare, OutputType);
         cout << "\n";
@@ -427,6 +301,7 @@ void Command_4(char *argv[])
 {
     int *a, *b;
     int size;
+    int AlgorithmType1, AlgorithmType2;
     double Time1 = 0, Time2 = 0;
     long long CountCompare1 = 0, CountCompare2 = 0;
 
@@ -436,17 +311,19 @@ void Command_4(char *argv[])
     ReadFile(a, size, argv[4]);
     b = CopyArr(a, size);
 
+    AlgorithmType1 = GetAlgorithmType(argv[2]);
+    AlgorithmType2 = GetAlgorithmType(argv[3]);
+    if (AlgorithmType1 == -1 || AlgorithmType2 == -1)
+        return;
+
     // Sort Array
-    SortArr(a, size, argv[2], CountCompare1, Time1, 2, Success);
-    SortArr(b, size, argv[3], CountCompare2, Time2, 2, Success);
+    SortArray(a, size, sortingFunctions[AlgorithmType1], sortingTimeFunctions[AlgorithmType1], CountCompare1, Time1, 2);
+    SortArray(a, size, sortingFunctions[AlgorithmType2], sortingTimeFunctions[AlgorithmType2], CountCompare2, Time2, 2);
     if (!Success)
         return;
 
     // Result
-    cout << "Algorithm: ";
-    PrintAlgorithm(argv[2]);
-    cout << " | ";
-    PrintAlgorithm(argv[3]);
+    cout << "Algorithm: " << Algorithm[AlgorithmType1] << " | " << Algorithm[AlgorithmType2] << endl;
     cout << "\nInput file: " << argv[4] << endl;
     cout << "Input size: " << size << endl;
     cout << "---------------------------------\n";
@@ -462,6 +339,7 @@ void Command_5(char *argv[])
 {
     int *a, *b;
     int dataType;
+    int AlgorithmType1, AlgorithmType2;
     int size = atoi(argv[4]);
     double Time1 = 0, Time2 = 0;
     long long CountCompare1 = 0, CountCompare2 = 0;
@@ -470,6 +348,11 @@ void Command_5(char *argv[])
     // Get datatype for array
     dataType = GetDataType(argv[5]);
     if (dataType == -1)
+        return;
+
+    AlgorithmType1 = GetAlgorithmType(argv[2]);
+    AlgorithmType2 = GetAlgorithmType(argv[3]);
+    if (AlgorithmType1 == -1 || AlgorithmType2 == -1)
         return;
 
     // Creat Array from array
@@ -481,18 +364,15 @@ void Command_5(char *argv[])
     WriteFile("input.txt", a, size);
 
     // Sort Array
-    SortArr(a, size, argv[2], CountCompare1, Time1, 2, Success);
-    SortArr(b, size, argv[3], CountCompare2, Time2, 2, Success);
+    SortArray(a, size, sortingFunctions[AlgorithmType1], sortingTimeFunctions[AlgorithmType1], CountCompare1, Time1, 2);
+    SortArray(a, size, sortingFunctions[AlgorithmType2], sortingTimeFunctions[AlgorithmType2], CountCompare2, Time2, 2);
     if (!Success)
         return;
 
     // print result
-    cout << "Algorithm: ";
-    PrintAlgorithm(argv[2]);
-    cout << " | ";
-    PrintAlgorithm(argv[3]);
+    cout << "Algorithm: " << Algorithm[AlgorithmType1] << " | " << Algorithm[AlgorithmType2] << endl;
     cout << "\nInput size : " << size << endl;
-    PrintOrder(dataType);
+    cout << "Input order: " << Order[dataType] << endl;
     cout << "---------------------------------\n";
     cout << "Running time: " << Time1 << " | " << Time2 << endl;
     cout << "Comparisions: " << CountCompare1 << " | " << CountCompare2 << endl;
