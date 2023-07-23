@@ -1,7 +1,3 @@
-/* references
-    https://codelearn.io/sharing/flash-sort-thuat-toan-sap-xep-than-thanh
-    https://github.com/HaiDuc0147/sortingAlgorithm
-*/
 
 #include "Header/flashSort.h"
 #include"main.h"

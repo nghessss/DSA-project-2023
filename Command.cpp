@@ -128,8 +128,8 @@ void PrintResult(double Time, long long CountCompare, int OutputType)
     // both
     else
     {
-        cout << "Running Time : " << Time << endl;
-        cout << "Comparision : " << CountCompare << endl;
+        cout << "Running Time : " << Time << " ms " << endl;
+        cout << "Comparision : " << CountCompare << " comparisons " << endl;
     }
 }
 
@@ -144,7 +144,7 @@ void ReadFile(int *&a, int &n, const char *filename)
     }
     is >> n;
     is.ignore();
-    
+
     a = new int[n];
     int idx = 0;
     while (!is.eof())
@@ -174,7 +174,6 @@ void Command_1(char *argv[])
     int size;
     double Time = 0;
     long long CountCompare = 0;
-    bool Success = true;
 
     OutputType = GetOutputType(argv[4]);
     if (OutputType == -1)
@@ -189,8 +188,6 @@ void Command_1(char *argv[])
 
     // Sort Array
     SortArray(a, size, sortingFunctions[AlgorithmType], sortingTimeFunctions[AlgorithmType], CountCompare, Time, OutputType);
-    if (!Success)
-        return;
 
     // Result
     cout << "Algorithm: " << Algorithm[AlgorithmType] << endl;
@@ -211,7 +208,6 @@ void Command_2(char *argv[])
     int AlgorithmType;
     double Time = 0;
     long long CountCompare = 0;
-    bool Success = true;
 
     // Get output Type(Output parameter)
     OutputType = GetOutputType(argv[5]);
@@ -236,11 +232,6 @@ void Command_2(char *argv[])
 
     // choose algorithm
     SortArray(a, size, sortingFunctions[AlgorithmType], sortingTimeFunctions[AlgorithmType], CountCompare, Time, OutputType);
-    if (!Success)
-    {
-        delete[] a;
-        return;
-    }
 
     // result
     cout << "Algorithm: " << Algorithm[AlgorithmType];
@@ -261,7 +252,6 @@ void Command_3(char *argv[])
     int AlgorithmType;
     double Time = 0;
     long long CountCompare = 0;
-    bool Success = true;
 
     OutputType = GetOutputType(argv[4]);
     if (OutputType == -1)
@@ -286,8 +276,6 @@ void Command_3(char *argv[])
         WriteFile(temp.c_str(), a, size);
 
         SortArray(a, size, sortingFunctions[AlgorithmType], sortingTimeFunctions[AlgorithmType], CountCompare, Time, OutputType);
-        if (!Success)
-            break;
 
         cout << "Input order: " << Order[i] << endl;
         cout << "---------------------------------\n";
@@ -305,8 +293,6 @@ void Command_4(char *argv[])
     double Time1 = 0, Time2 = 0;
     long long CountCompare1 = 0, CountCompare2 = 0;
 
-    bool Success = true;
-
     // Read array from file
     ReadFile(a, size, argv[4]);
     b = CopyArr(a, size);
@@ -319,8 +305,6 @@ void Command_4(char *argv[])
     // Sort Array
     SortArray(a, size, sortingFunctions[AlgorithmType1], sortingTimeFunctions[AlgorithmType1], CountCompare1, Time1, 2);
     SortArray(a, size, sortingFunctions[AlgorithmType2], sortingTimeFunctions[AlgorithmType2], CountCompare2, Time2, 2);
-    if (!Success)
-        return;
 
     // Result
     cout << "Algorithm: " << Algorithm[AlgorithmType1] << " | " << Algorithm[AlgorithmType2] << endl;
@@ -343,7 +327,6 @@ void Command_5(char *argv[])
     int size = atoi(argv[4]);
     double Time1 = 0, Time2 = 0;
     long long CountCompare1 = 0, CountCompare2 = 0;
-    bool Success = true;
 
     // Get datatype for array
     dataType = GetDataType(argv[5]);
@@ -366,8 +349,6 @@ void Command_5(char *argv[])
     // Sort Array
     SortArray(a, size, sortingFunctions[AlgorithmType1], sortingTimeFunctions[AlgorithmType1], CountCompare1, Time1, 2);
     SortArray(a, size, sortingFunctions[AlgorithmType2], sortingTimeFunctions[AlgorithmType2], CountCompare2, Time2, 2);
-    if (!Success)
-        return;
 
     // print result
     cout << "Algorithm: " << Algorithm[AlgorithmType1] << " | " << Algorithm[AlgorithmType2] << endl;
