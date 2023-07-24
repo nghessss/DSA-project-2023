@@ -2,48 +2,80 @@
 
 void countingSort(int a[], int n)
 {
-    int maxNum = 0;
-    for (int i = 0; i < n; i++)
-        if (maxNum < a[i])
-            maxNum = a[i];
+    int *output = new int[n];
+    int Max = a[0];
+    int Min = a[0];
 
-    int *count = new int[maxNum + 1];
-    for (int i = 0; i < maxNum; i++)
-        count[i] = 0;
-    for (int i = 0; i < n; i++)
-        count[a[i]]++;
+    int i;
+    for (i = 1; i < n; i++)
+    {
+        if (a[i] > Max)
+            Max = a[i];
+        else if (a[i] < Min)
+            Min = a[i];
+    }
 
-    int i = 0;
-    for (int num = 0; num <= maxNum; num++)
-        while (count[num] > 0)
-        {
-            a[i++] = num;
-            count[num]--;
-        }
-    delete count;
+    int k = Max - Min + 1;
+
+    int *count_array = new int[k];
+    for (i = 0; i < k; i++)
+        count_array[i] = 0;
+
+    for (i = 0; i < n; i++)
+        count_array[a[i] - Min]++;
+
+    for (i = 1; i < k; i++)
+        count_array[i] += count_array[i - 1];
+
+    for (i = 0; i < n; i++)
+    {
+        output[count_array[a[i] - Min] - 1] = a[i];
+        count_array[a[i] - Min]--;
+    }
+
+    for (i = 0; i < n; i++)
+        a[i] = output[i];
+    delete count_array;
+    delete output;
 }
 void countingSortCompare(int a[], int n, long long &comparison)
 {
     comparison = 0;
-    int maxNum = 0;
-    for (int i = 0; ++comparison && i < n; i++)
-        if (++comparison && maxNum < a[i])
-            maxNum = a[i];
+    int *output = new int[n];
+    int Max = a[0];
+    int Min = a[0];
 
-    int *count = new int[maxNum + 1];
-    for (int i = 0; ++comparison && i < maxNum; i++)
-        count[i] = 0;
-    for (int i = 0; ++comparison && i < n; i++)
-        count[a[i]]++;
+    int i;
+    for (i = 1; i < n; i++)
+    {
+        if (a[i] > Max)
+            Max = a[i];
+        else if (a[i] < Min)
+            Min = a[i];
+    }
 
-    int i = 0;
-    for (int num = 0; ++comparison && num <= maxNum; num++)
-        while (++comparison && count[num] > 0)
-        {
-            a[i++] = num;
-            count[num]--;
-        }
-    delete count;
+    int k = Max - Min + 1;
+
+    int *count_array = new int[k];
+    for (i = 0; i < k; i++)
+        count_array[i] = 0;
+
+    for (i = 0; i < n; i++)
+        count_array[a[i] - Min]++;
+
+    for (i = 1; i < k; i++)
+        count_array[i] += count_array[i - 1];
+
+    for (i = 0; i < n; i++)
+    {
+        output[count_array[a[i] - Min] - 1] = a[i];
+        count_array[a[i] - Min]--;
+    }
+
+    for (i = 0; i < n; i++)
+        a[i] = output[i];
+    delete count_array;
+    delete output;
 }
 void countingSortTime(int a[], int n, double &time)
 {
