@@ -2,6 +2,8 @@
 
 int partition(int a[], int first, int last)
 {
+    int num = first + rand()%(last - first +1);
+    swap(a[num],a[first]);
     int pivot = a[first];
     int l, r;
     l = first;
@@ -29,6 +31,8 @@ void quickSort(int a[], int first, int last)
 
 int partitionCompare(int a[], int first, int last, long long &comparison)
 {
+    int num = first + rand()%(last - first +1);
+    swap(a[num],a[first]);
     int pivot = a[first];
     int l, r;
     l = first;
